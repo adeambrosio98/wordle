@@ -38,32 +38,33 @@ def get_colored_user_input(user_input, mask_correct_letters, mask_existing_lette
 
 MAX_TRIES = 6
 
-words_5 = get_5_letter_words(english_words_lower_alpha_set)
+if __name__ == "__main__":
+    words_5 = get_5_letter_words(english_words_lower_alpha_set)
 
-right_word = words_5[randint(0, len(words_5))]
+    right_word = words_5[randint(0, len(words_5))]
 
-tries = 0
+    tries = 0
 
-while(tries < MAX_TRIES):
-    user_input = input("Make your best guess: ")
+    while(tries < MAX_TRIES):
+        user_input = input("Make your best guess: ")
 
-    if len(user_input) != 5:
-        print("❌ You stoopid! The word must be 5 letters long. ❌")
-        continue
+        if len(user_input) != 5:
+            print("❌ You stoopid! The word must be 5 letters long. ❌")
+            continue
 
-    if user_input == right_word:
-        print("🎉 Yay! You are correct! 🎉")
-        break
+        if user_input == right_word:
+            print("🎉 Yay! You are correct! 🎉")
+            break
 
-    if user_input not in words_5:
-        print("❌ Word not valid! ❌")
-        continue
+        if user_input not in words_5:
+            print("❌ Word not valid! ❌")
+            continue
 
-    mask_correct_letters = get_mask_correct_letters(user_input, right_word)
-    mask_existing_letters = get_mask_existing_letters(user_input, right_word)
+        mask_correct_letters = get_mask_correct_letters(user_input, right_word)
+        mask_existing_letters = get_mask_existing_letters(user_input, right_word)
 
-    colored_user_input = get_colored_user_input(user_input, mask_correct_letters, mask_existing_letters)
+        colored_user_input = get_colored_user_input(user_input, mask_correct_letters, mask_existing_letters)
 
-    print(colored_user_input)
-    tries += 1
-    print(f"You got {MAX_TRIES-tries} left.")
+        print(colored_user_input)
+        tries += 1
+        print(f"You got {MAX_TRIES-tries} left.")
